@@ -36,11 +36,9 @@ class Enigma:
     def encrypt(self, plaintext):
         ciphertext = ''
         for x in plaintext:
-            print(self.rotor_positions)
-            ciphertext += self.get_permutation().mapping[x]
             self.tick()
+            ciphertext += self.get_permutation().mapping[x]
         return ciphertext
 
     def reset(self):
         self.rotor_positions = [0] * len(self.settings.rotors)
-
