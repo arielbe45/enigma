@@ -32,6 +32,10 @@ class Enigma:
 
     def tick(self):
         self.rotor_positions[-1] = (self.rotor_positions[-1] + 1) % len(ALPHABET)
+        if self.rotor_positions[-1] in self.settings.rotors[-1].turnover_notch_pos:
+            self.rotor_positions[-2] = (self.rotor_positions[-2] + 1) % len(ALPHABET)
+            if self.rotor_positions[-2] in self.settings.rotors[-2].turnover_notch_pos:
+                self.rotor_positions[-3] = (self.rotor_positions[-3] + 1) % len(ALPHABET)
 
     def encrypt(self, plaintext):
         ciphertext = ''
