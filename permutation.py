@@ -32,6 +32,9 @@ class Permutation:
                     cycles.append(''.join(cycle))
         return cycles
 
+    def __repr__(self):
+        return str(self.cycles())
+
 
 def get_permutation_from_cycles(cycles: list[str]):
     mapping = {x: x for x in ALPHABET}
