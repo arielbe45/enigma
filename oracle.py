@@ -40,8 +40,8 @@ def get_random_position(rng: random.Random):
 
 def get_random_settings(rng: random.Random):
     ground_settings = get_random_position(rng)
-    ring_settings = [rng.randint(0, len(permutation.ALPHABET) - 1) for _ in range(3)]
-    # ring_settings = [0, 0, 0]
+    # ring_settings = [rng.randint(0, len(permutation.ALPHABET) - 1) for _ in range(3)]
+    ring_settings = [0, 0, 0]
     reflector = rng.choice(list(machines.ENIGMA1_REFLECTORS.values()))
     rotors = list(machines.ENIGMA1_ROTORS.values())
     rng.shuffle(rotors)

@@ -49,6 +49,7 @@ def get_plugboard(real_characteristic_permutations: list[Permutation],
     ad_conj, ad_valid = get_conjugate(ad_r, ad_g)
     be_conj, be_valid = get_conjugate(be_r, be_g)
     cf_conj, cf_valid = get_conjugate(cf_r, cf_g)
-    if ad_valid and be_valid and cf_valid and ad_conj.mapping == be_conj.mapping == cf_conj.mapping:
-        return ad_conj
+    if ad_valid and be_valid and cf_valid:
+        conj = set(list(ad_conj.cycles()) + list(be_conj.cycles()) + list(cf_conj.cycles()))
+        return permutation.get_permutation_from_cycles(list(conj))
     return None

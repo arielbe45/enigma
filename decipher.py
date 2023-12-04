@@ -6,7 +6,7 @@ from plugboard import get_plugboard
 import random
 
 
-def get_settings(seed: int):
+def decipher(seed: int):
     real_p = get_seed_characteristic_permutations(seed)
     options = get_catalog_settings_options(seed)
 
@@ -26,7 +26,7 @@ def main():
     seed = 10
     secret_settings, secret_ground_settings = get_random_settings(rng=random.Random(seed))
     print('solution:', secret_settings, secret_ground_settings)
-    print(get_settings(seed))
+    print(decipher(seed))
 
 
 if __name__ == '__main__':
