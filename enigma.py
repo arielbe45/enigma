@@ -1,4 +1,5 @@
-from permutation import *
+from permutation import Permutation
+import permutation
 
 from dataclasses import dataclass, field
 
@@ -40,29 +41,29 @@ class Enigma:
             self.rotor_positions = [0] * len(self.settings.rotors)
 
     def set_positions(self, positions: str):
-        if len(positions) != len(self.settings.rotors) or any(x not in ALPHABET for x in positions):
+        if len(positions) != len(self.settings.rotors) or any(x not in permutation.ALPHABET for x in positions):
             raise ValueError
-        self.rotor_positions = [ALPHABET.index(x) for x in positions]
+        self.rotor_positions = [permutation.ALPHABET.index(x) for x in positions]
 
     def get_permutation(self):
         rotors = []
         for i in range(3):
-            offset = get_offset_p(self.rotor_positions[i] - self.settings.ring_settings[i])
-            rotors.append(composition(offset.inverse(), self.settings.rotors[i].p, offset))
-        p = composition(*rotors, self.settings.plugboard)
-        return composition(p.inverse(), self.settings.reflector.p, p)
+            offset = permutation.get_offset_p(self.rotor_positions[i] - self.settings.ring_settings[i])
+            rotors.append(permutation.composition(offset.inverse(), self.settings.rotors[i].p, offset))
+        p = permutation.composition(*rotors, self.settings.plugboard)
+        return permutation.composition(p.inverse(), self.settings.reflector.p, p)
 
     def tick(self):
-        self.rotor_positions[-1] = (self.rotor_positions[-1] + 1) % len(ALPHABET)
+        self.rotor_positions[-1] = (self.rotor_positions[-1] + 1) % len(permutation.ALPHABET)
         if self.rotor_positions[-1] in self.settings.rotors[-1].turnover_notch_pos:
-            self.rotor_positions[-2] = (self.rotor_positions[-2] + 1) % len(ALPHABET)
+            self.rotor_positions[-2] = (self.rotor_positions[-2] + 1) % len(permutation.ALPHABET)
             if self.rotor_positions[-2] in self.settings.rotors[-2].turnover_notch_pos:
-                self.rotor_positions[-3] = (self.rotor_positions[-3] + 1) % len(ALPHABET)
+                self.rotor_positions[-3] = (self.rotor_positions[-3] + 1) % len(permutation.ALPHABET)
 
     def encrypt(self, plaintext, ignore: bool = False):
         ciphertext = ''
         for x in plaintext:
-            if x in ALPHABET:
+            if x in permutation.ALPHABET:
                 self.tick()
                 ciphertext += self.get_permutation().mapping[x]
             elif not ignore:
