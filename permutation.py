@@ -4,6 +4,10 @@ ALPHABET = string.ascii_lowercase
 
 
 class Permutation:
+    """
+    Represents a permutation on the alphabet abc...z
+    """
+
     def __init__(self, mapping: dict[str, str]):
         self.mapping = mapping
 

@@ -59,20 +59,6 @@ def iterate_all_settings():
                                      reflector=reflector), ground_settings
 
 
-# def find_settings(seed: int, options: list[Tuple[EnigmaSettings, str]]):
-#     possible_settings = []
-#     for settings, ground_settings in options:
-#         enigma = Enigma(settings=settings)
-#         enigma.set_positions(ground_settings)
-#         word = oracle(seed)
-#         key = enigma.encrypt(word)
-#         if key[:3] == key[3:6]:
-#             possible_settings.append((settings, ground_settings))
-#     if len(possible_settings) != 1:
-#         raise Exception('settings not found, options:', possible_settings)
-#     return possible_settings[0]
-
-
 class Catalog:
     def __init__(self):
         self.mapping: dict[str, list[Tuple[EnigmaSettings, str]]] = {}

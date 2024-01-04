@@ -7,6 +7,11 @@ import random
 
 
 def decipher(seed: int):
+    """
+    Finds the secret key generated from the random seed using the catalog and conjugate method to find the plugboard
+    :param seed: an int used to generate the secret key
+    :return: a pair: (settings: EnigmaSettings, ground_settings: str)
+    """
     real_p = get_seed_characteristic_permutations(seed)
     options = get_catalog_settings_options(seed)
 

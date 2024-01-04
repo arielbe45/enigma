@@ -32,6 +32,12 @@ def get_representation_diff(p1_representation: list[str], p2: Permutation):
 
 
 def get_conjugate(p1: Permutation, p2: Permutation):
+    """
+    Finds the conjugate permutation x given p1 = x * p2 * x.inverse()
+    :param p1: Permutation
+    :param p2: Permutation
+    :return: the conjugate permutation
+    """
     min_diff = None
     for p1_repr in iterate_permutation_representations(p1):
         diff, valid = get_representation_diff(p1_repr, p2)

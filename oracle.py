@@ -52,6 +52,11 @@ def get_random_settings(rng: random.Random):
 
 
 def oracle(seed: int):
+    """
+    The attacker can call oracle to find the secret key
+    :param seed: the seed used to generate the secret key (settings)
+    :return: the first 6 characters of a typical ciphertext generated from the empty message
+    """
     rng = random.Random(seed)
     settings, ground_settings = get_random_settings(rng)
     key_settings = get_random_position(random.Random())

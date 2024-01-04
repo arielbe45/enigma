@@ -6,6 +6,9 @@ from dataclasses import dataclass, field
 
 @dataclass
 class Rotor:
+    """
+    Represents a rotor of the enigma machine
+    """
     p: Permutation
     turnover_notch_pos: list[int]
     name: str
@@ -16,6 +19,9 @@ class Rotor:
 
 @dataclass
 class Reflector:
+    """
+    Represents the reflector of the enigma machine
+    """
     p: Permutation
     name: str
 
@@ -25,6 +31,9 @@ class Reflector:
 
 @dataclass
 class EnigmaSettings:
+    """
+    Represents the settings (secret key) used to encrypt using the enigma machine
+    """
     plugboard: Permutation
     rotors: list[Rotor]
     ring_settings: list[int]
@@ -33,6 +42,9 @@ class EnigmaSettings:
 
 @dataclass
 class Enigma:
+    """
+    Represents an implementation of the enigma algorithm
+    """
     settings: EnigmaSettings
     rotor_positions: list[int] = field(default=None)
 
